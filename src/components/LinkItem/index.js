@@ -1,23 +1,24 @@
 import "./style.css";
 import { FiX, FiClipboard } from "react-icons/fi";
 
-const LinkItem = ({ closeModal }) => {
+const LinkItem = ({ closeModal, linkEncurtado }) => {
   return (
     <div className="modal-container">
 
       <div className="modal-header">
         <h2>Link Encurtado!</h2>
+
         <button onClick={closeModal}>
           <FiX size={28} color="#000" />
         </button>
       </div>
 
       <span>
-          https://google.com
+          {linkEncurtado.long_url}
       </span>
 
       <button className="modal-link">
-          https://google.com
+          {linkEncurtado.link}
           <FiClipboard size={20} color="#fff"/>
       </button>
       
