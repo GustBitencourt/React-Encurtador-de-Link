@@ -1,9 +1,17 @@
-import { FiLink } from "react-icons/fi";
-import Logo from "../../assets/img/Logo.svg";
-import Menu from "../../components/Menu";
+import { useState } from 'react';
+import { FiLink } from 'react-icons/fi';
+import Logo from '../../assets/img/Logo.svg';
+import LinkItem from '../../components/LinkItem';
+import Menu from '../../components/Menu';
 import "./style.css";
 
 const Home = () => {
+  const [link, setLink] = useState('');
+
+  function handleSubmitLink() {
+    console.log(`Link: ${link}`);
+  }
+
   return (
     <main className="container-home">
 
@@ -19,13 +27,18 @@ const Home = () => {
 
         <div>
           <FiLink size={24} color="#FFF" />
-          <input placeholder="Cole o seu link aqui" />
+          <input 
+            placeholder="Cole o seu link aqui"
+            value={link}
+            onChange={(event) => setLink(event.target.value)}
+          />
         </div>
         
-        <button>Encurtar Link</button>
+        <button onClick={handleSubmitLink}>Encurtar Link</button>
       </div>
 
       <Menu />
+      <LinkItem />
     </main>
   );
 };
