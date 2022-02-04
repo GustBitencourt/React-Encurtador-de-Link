@@ -2,6 +2,12 @@ import "./style.css";
 import { FiX, FiClipboard } from "react-icons/fi";
 
 const LinkItem = ({ closeModal, linkEncurtado }) => {
+
+  async function copyLink () {
+    await navigator.clipboard.writeText(linkEncurtado.link)
+    alert('Url Copiada com sucesso');
+  }
+
   return (
     <div className="modal-container">
 
@@ -17,7 +23,7 @@ const LinkItem = ({ closeModal, linkEncurtado }) => {
           {linkEncurtado.long_url}
       </span>
 
-      <button className="modal-link">
+      <button className="modal-link" onClick={copyLink}>
           {linkEncurtado.link}
           <FiClipboard size={20} color="#fff"/>
       </button>
