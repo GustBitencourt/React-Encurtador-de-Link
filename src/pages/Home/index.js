@@ -7,9 +7,11 @@ import "./style.css";
 
 const Home = () => {
   const [link, setLink] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   function handleSubmitLink() {
     console.log(`Link: ${link}`);
+    setShowModal(true);
   }
 
   return (
@@ -38,7 +40,12 @@ const Home = () => {
       </div>
 
       <Menu />
-      <LinkItem />
+
+      {
+        showModal && (
+          <LinkItem />
+        )
+      }
     </main>
   );
 };
