@@ -43,7 +43,9 @@ const Home = () => {
 
       {
         showModal && (
-          <LinkItem />
+          <LinkItem 
+            closeModal={() => setShowModal(false)}
+          />
         )
       }
     </main>
