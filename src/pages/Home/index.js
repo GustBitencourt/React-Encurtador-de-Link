@@ -4,6 +4,7 @@ import Logo from '../../assets/img/Logo.svg';
 import LinkItem from '../../components/LinkItem';
 import Menu from '../../components/Menu';
 import api from '../../services/api';
+import { saveLink, getLinksSaved } from '../../services/storedLinks';
 import "./style.css";
 
 const Home = () => {
@@ -20,6 +21,9 @@ const Home = () => {
       //resposta da api com o link encurtado
       setData(response.data);
       setShowModal(true);
+
+      //salvar link no storage
+      saveLink('shotLink', response.data);
 
     } catch (err) {
       alert('Algo deu errado!');
