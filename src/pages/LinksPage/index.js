@@ -31,7 +31,10 @@ const LinksPage = () => {
   function handleOpenLink(link) {
     setData(link);
     setShowModal(true);
+  }
 
+  function handleDelete(link) {
+    
   }
 
   return (
@@ -54,7 +57,7 @@ const LinksPage = () => {
           </buttom>
 
           <buttom className="link-delete">
-            <FiTrash size={24} color="#FF5454" />
+            <FiTrash size={24} color="#FF5454" onClick={(link) => handleDelete(link.id)} />
           </buttom>          
         </div>
       ))}

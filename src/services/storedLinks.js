@@ -30,6 +30,16 @@ export async function saveLink(key, newLink) {
 }
 
 
-
-
 //deletar link salvo
+export function deleteLink(links, id) {
+    //filtrando links
+    let myLinksSaved = links.filter(link => {
+        //retorna apenas o link selecionado
+        return (link.id !== id)
+    })
+
+    localStorage.setItem('shotLink', JSON.stringify(myLinksSaved));
+
+    //retorna o array sem o link selecionado
+    return myLinksSaved;
+}
