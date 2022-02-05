@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./style.css";
 import { FiArrowLeft, FiLink, FiTrash } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { getLinksSaved } from "../../services/storedLinks";
+import { getLinksSaved, deleteLink } from "../../services/storedLinks";
 import LinkItem from "../../components/LinkItem";
 
 const LinksPage = () => {
@@ -16,7 +16,7 @@ const LinksPage = () => {
 
   useEffect(() => {
     async function getLinks() {
-      const result = await getLinksSaved("shotLink");
+      const result = await getLinksSaved("shortLink");
       if (result.length === 0) {
         //lista vazia
       }
@@ -33,8 +33,14 @@ const LinksPage = () => {
     setShowModal(true);
   }
 
-  function handleDelete(link) {
-    
+  async function handleDelete(id) {
+    const result = await deleteLink(myLinks, id);
+
+    if(result.length === 0) {
+      console.log('sem links salvos');
+    }
+
+    setMyLinks(result);    
   }
 
   return (
@@ -57,7 +63,7 @@ const LinksPage = () => {
           </buttom>
 
           <buttom className="link-delete">
-            <FiTrash size={24} color="#FF5454" onClick={(link) => handleDelete(link.id)} />
+            <FiTrash size={24} color="#FF5454" onClick={() => handleDelete(link.id)} />
           </buttom>          
         </div>
       ))}
@@ -67,7 +73,7 @@ const LinksPage = () => {
         showModal && (
           <LinkItem 
           closeModal={() => setShowModal(false)}
-          linkEncurtado={data}
+            linkEncurtado={data}
           />
         )
       }

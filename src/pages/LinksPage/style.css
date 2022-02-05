@@ -1,6 +1,7 @@
 .links-container {
     max-width: 1120px;
     margin: 2rem auto 0 auto;
+    cursor: pointer;
 }
 
 .links-header {
