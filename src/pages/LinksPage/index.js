@@ -14,11 +14,15 @@ const LinksPage = () => {
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  //estado para quando lista estiver vazia
+  const [emptyList, setEmptyList] = useState(false);
+
   useEffect(() => {
     async function getLinks() {
       const result = await getLinksSaved("shortLink");
       if (result.length === 0) {
         //lista vazia
+        setEmptyList(true);
       }
 
       //todos os links salvos no LocalStorage
@@ -38,6 +42,7 @@ const LinksPage = () => {
 
     if(result.length === 0) {
       console.log('sem links salvos');
+      setEmptyList(true);
     }
 
     setMyLinks(result);    
@@ -51,6 +56,16 @@ const LinksPage = () => {
         </Link>
         <h1>Meus Links</h1>
       </div>
+
+      {/* Mensagem pra quando não houver links salvos */}
+      {
+        emptyList && (
+          <div className="links-item">
+            <h2 className="empty-text">Você não possui links salvos!</h2>
+
+          </div>
+        )
+      }
 
       {/* percorre array de links salvos no storage para monta-lo */}
       {myLinks.map((link) => (
