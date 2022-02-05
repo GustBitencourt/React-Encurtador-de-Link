@@ -22,7 +22,7 @@ const Home = () => {
       setData(response.data);
       setShowModal(true);
 
-      //salvar link no storage
+      //salvar link no storage - com a chave
       saveLink('shotLink', response.data);
 
     } catch (err) {
